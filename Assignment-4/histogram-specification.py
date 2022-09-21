@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from skimage import exposure
 from skimage.exposure import match_histograms
 import cv2
 

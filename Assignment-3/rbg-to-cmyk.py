@@ -10,11 +10,11 @@ path = r'C:/Users/sirap/Desktop/year-4-image/darths.jpg'
 # RGB to CMYK using openCV
 image = cv2.imread(path)
 
-def splitRGB(image):
+def split_rgb(image):
     b, g, r = cv2.split(image)
     return b, g, r
 
-def rgbToCmyk(r, g, b):
+def rgb_to_cmyk(r, g, b):
     if (r, g, b) == (0, 0, 0):
         return 0, 0, 0, CMYK_SCALE
     # rgb [0,255] -> cmy [0,1]
@@ -29,24 +29,22 @@ def rgbToCmyk(r, g, b):
     y = (y - min_cmy) / (1 - min_cmy)
     k = min_cmy
 
-    # rescale to the range [0,CMYK_SCALE]
-    # return c * CMYK_SCALE, m * CMYK_SCALE, y * CMYK_SCALE, k * CMYK_SCALE
     return (c * CMYK_SCALE, m * CMYK_SCALE, y * CMYK_SCALE)
 
-def imageRgbToCmyk(image):
+def image_rgb_to_cmyk(image):
     height, width, _ = image.shape
     for i in range(height):
         for j in range(width):
+
             # Change pixels [i,j] from (b,g,r) to (C,M,Y,K)
             b, g, r = cv2.split(image)
-            image[i, j] = rgbToCmyk(b[i, j], g[i, j], r[i, j])
+            image[i, j] = rgb_to_cmyk(b[i, j], g[i, j], r[i, j])
         print("One row passes %d", i*j)
     # print(height, width)
     cv2.imshow('sample2', image)
 
 
-
-imageRgbToCmyk(image)
+image_rgb_to_cmyk(image)
 
 cv2.imshow('sample', image)
 cv2.waitKey(0)
