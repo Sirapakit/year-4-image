@@ -8,10 +8,8 @@ image = cv2.imread(path)
 
 # use cv2
 cv2_image = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
-
 cv2.imshow('sample', cv2_image)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+
 
 # use formula
 B = image[:, :, 0]
