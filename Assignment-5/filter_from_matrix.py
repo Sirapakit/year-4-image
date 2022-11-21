@@ -12,11 +12,9 @@ image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 dim = (200, 200)
 image_rez = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
  
-box_filter = np.array([
-    [0.1, 0.1, 0.1],
-    [0.1, 0.1, 0.1],
-    [0.1, 0.1, 0.1]
-])
+box_filter = np.array([[0, -1, 0],
+                            [-1, 5, -1],
+                            [0, -1, 0]]) # This is sharpen image
 
 box_filter_5x5 = np.array([
     [0.1, 0.1, 0.1, 0.1, 0.1],
@@ -29,7 +27,6 @@ box_filter_5x5 = np.array([
 
 gaussian_filter = np.array([
     [0.0625, 0.125, 0.0625],
-    [0.125, 0.250, 0.125],
     [0.0625, 0.125, 0.0625]
 ])
 
